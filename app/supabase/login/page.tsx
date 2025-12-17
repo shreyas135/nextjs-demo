@@ -20,6 +20,7 @@ export default function LoginPage() {
 
   return (
     <div style={{ padding: 20 }}>
+      <p><Link href="/" className="mainlink">Home</Link></p>
       <h1>Supabase User Login</h1>
       <input
         value={email}

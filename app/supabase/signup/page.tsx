@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { supabase } from "../../../lib/supabaseClient";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +29,9 @@ export default function SignUpPage() {
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
       <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
       <button onClick={signUp}>Sign Up</button>
+      <p>
+        Already have an account? <Link href="/supabase/login" style={{ color: "blue" }}> Login here</Link>
+      </p>
     </div>
   );
 }
