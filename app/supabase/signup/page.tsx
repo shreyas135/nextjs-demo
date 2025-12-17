@@ -24,7 +24,7 @@ export default function SignUpPage() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Sign Up</h1>
+      <h1>Supabase User Sign Up</h1>
       <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
       <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />

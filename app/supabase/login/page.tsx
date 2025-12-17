@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Login</h1>
+      <h1>Supabase User Login</h1>
       <input
         value={email}
         onChange={(e) => setEmail(e.target.value)}
