@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { supabase } from "../../../lib/supabaseClient";
 import { useRouter } from "next/navigation";
-
+import { supabase } from "../../../lib/supabaseClient";
+import { User } from "@supabase/supabase-js";
 type Todo = {
   id: number;
   title: string;
@@ -12,10 +12,11 @@ type Todo = {
   user_id: string;
 };
 
+
 export default function Page() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState("");
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   // Fetch user once on mount
@@ -27,11 +28,14 @@ export default function Page() {
       } = await supabase.auth.getUser();
 
       if (error) console.error(error.message);
+      console.log("My User Data:", user);
+
       if (!user) router.push("/supabase/login");
       else setUser(user);
     };
     getUser();
-  }, []);
+    console.log("User fetched");
+  }, [router]);
 
   // Centralized fetchTodos
   const fetchTodos = useCallback(async (userId: string) => {
@@ -56,7 +60,7 @@ export default function Page() {
       const data = await fetchTodos(user.id);
       setTodos(data);
     })();
-  }, [user]);
+  }, [user,fetchTodos]);
 
   // CRUD functions
   const addTodo = async () => {

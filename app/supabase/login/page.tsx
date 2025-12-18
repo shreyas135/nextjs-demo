@@ -10,11 +10,16 @@ export default function LoginPage() {
   const router = useRouter();
 
   const signIn = async () => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
     if (error) {
       alert(error.message);
     } else {
-      router.push("/supabase/todos"); // redirect to todos after login
+      console.log(data);
+      router.push("/supabase/todos");
     }
   };
 
