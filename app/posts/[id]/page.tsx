@@ -1,15 +1,22 @@
 'use client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams } from 'next/navigation'
 
+
+type Post = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
 export default function PostPage() {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Post | null>(null);
   const params = useParams();
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`); // ✅ single post
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
       const result = await response.json();
       setData(result);
     }
